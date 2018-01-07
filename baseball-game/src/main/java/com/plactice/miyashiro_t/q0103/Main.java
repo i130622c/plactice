@@ -18,6 +18,14 @@ public class Main {
 		try {
 			connection = DriverManager.getConnection(connectionURL, "root", "Miyashiro0930");
 			System.out.println("MySQLに接続できました。");
+			
+			Statement statement = connection.createStatement();
+			String sql = "SELECT * FROM member";
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			while(resultSet.next()){
+				System.out.println(resultSet.getString(0));
+			}
 		} catch (SQLException e) {
 			System.out.println("MySQLに接続できませんでした。");
 		} finally {
