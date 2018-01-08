@@ -10,32 +10,27 @@ package com.plactice.miyashiro_t.q0103;
 import java.sql.*;
 
 public class Main {
+	static final String URL = "jdbc:mysql://localhost:3306/baseball_game?autoReconnect=true&useSSL=false";
+	static final String USER = "root";
+	static final String PASSWARD = "Miyashiro0930";
+	static final String SQL_SELECT = "SELECT name_kanji FROM member";
+	static final String SQL_INSERT = "INSERT INTO member VALUES(1, 'test', 'テスト')";
 
 	public static void main(String[] args) {
-		Connection connection = null;
-		String connectionURL = "jdbc:mysql://localhost:3306/baseball_game?autoReconnect=true&useSSL=false";
 
-		try {
-			connection = DriverManager.getConnection(connectionURL, "root", "Miyashiro0930");
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWARD)) {
 			System.out.println("MySQLに接続できました。");
+			PreparedStatement statement = null;
 			
-			Statement statement = connection.createStatement();
-			String sql = "SELECT * FROM member";
-			ResultSet resultSet = statement.executeQuery(sql);
-			
-			while(resultSet.next()){
-				System.out.println(resultSet.getString(0));
+			statement = connection.prepareStatement(SQL_SELECT);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				String name_kanji = resultSet.getString(1);
+				System.out.println(name_kanji);
 			}
 		} catch (SQLException e) {
 			System.out.println("MySQLに接続できませんでした。");
-		} finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					System.out.println("MySQLのクローズに失敗しました。");
-				}
-			}
 		}
 	}
 }
