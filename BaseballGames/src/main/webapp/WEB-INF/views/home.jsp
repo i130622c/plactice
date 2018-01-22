@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Baseball Games</h1>
-	
+
 	<p>type: ${type}</p>
 
 	<form action="friend_save.action" method="post">
@@ -24,8 +24,13 @@
 	</form>
 
 	<hr>
-	
-	
+
+	<ul>
+		<li>id: ${id}</li>
+		<li>Kanji: ${name_kanji}</li>
+		<li>Kana: ${name_kana}</li>
+	</ul>
+
 	<P>The time on the server is ${serverTime}.</P>
 </body>
 </html>
