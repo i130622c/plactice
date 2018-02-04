@@ -1,12 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-
 <html>
 <head>
 <title>Home</title>
 </head>
 <body>
-	<h1>Baseball Game</h1>
+	<h1>Baseball Games</h1>
+
+	<p>type: ${type}</p>
 
 	<form action="friend_save.action" method="post">
 		<fieldset>
@@ -23,22 +24,13 @@
 	</form>
 
 	<hr>
-	<table>
-		<tr>
-			<th>id</th>
-			<th>Name Kanji</th>
-			<th>Name Kana</th>
-		</tr>
-		<c:forEach var="member" items="${members}">
-			<tr>
-				<td>${id}</td>
-				<td>${name_kanji}</td>
-				<td>${name_kana}</td>
-			</tr>
-		</c:forEach>
 
-	</table>
-	<hr>
+	<ul>
+		<li>id: ${id}</li>
+		<li>Kanji: ${name_kanji}</li>
+		<li>Kana: ${name_kana}</li>
+	</ul>
+
 	<P>The time on the server is ${serverTime}.</P>
 </body>
 </html>
